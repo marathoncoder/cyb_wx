@@ -1,0 +1,19 @@
+<view class="section">
+  <swiper indicator-dots="true" autoplay="true" duration="{{duration}}" interval="{{interval}}">
+    <view wx:for="{{swiper}}" wx:key="unique">
+      <swiper-item>
+        <view>
+          <image src="{{item.image}}" mode="scaleToFill center" class="banner"></image>
+        </view>
+      </swiper-item>
+    </view>
+  </swiper>
+  <view class="scroll-txt">
+    <text class="scroll-ads">{{scrollAds.title}}</text>
+  </view>
+  <view wx:for="{{advertise}}" wx:key="unique" class="ads-list" wx:for-item="item">
+    <view class="ads-item">
+      <image src="{{item.image}}" mode="scaleToFill center"></image>
+    </view>
+  </view>
+</view>
