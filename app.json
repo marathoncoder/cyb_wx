@@ -1,12 +1,14 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/car_source/car_source",
+    "pages/search_car/search_car",
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "车源宝微信版",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -22,19 +24,19 @@
         "selectedIconPath":"images/tab_home_sel@2x.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/car_source/car_source",
         "text": "车源",
         "iconPath":"images/tab_car_source_def@2x.png",
         "selectedIconPath":"images/tab_car_source_sel@2x.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/search_car/search_car",
         "text": "寻车",
         "iconPath":"images/tab_search_def@2x.png",
         "selectedIconPath":"images/tab_search_sel@2x.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/user/user",
         "text": "我",
         "iconPath":"images/tab_user_def@2x.png",
         "selectedIconPath":"images/tab_user_sel@2x.png"
