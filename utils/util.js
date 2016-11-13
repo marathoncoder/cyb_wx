@@ -1,14 +1,14 @@
 function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
+  var year = new Date(date).getFullYear()
+  var month = new Date(date).getMonth() + 1
+  var day = new Date(date).getDate()
 
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds();
+  var hour = new Date(date).getHours()
+  var minute = new Date(date).getMinutes()
+  var second = new Date(date).getSeconds();
 
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 function formatNumber(n) {
@@ -16,6 +16,22 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function fetchURL(url, callback) {
+  return fetch(url)
+    .then(function (response) {
+      if (response.status == 200) {
+        return response.json();
+      }
+    }).then(function (data) {
+      console.log(data);
+      if (typeof callback == 'function') {
+        callback(data);
+      }
+    })
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatNumber: formatNumber,
+  fetch: fetchURL
 }

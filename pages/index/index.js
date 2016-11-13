@@ -1,56 +1,64 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var util = require('../../utils/util');
+
 Page({
   data: {
-    motto: 'Hello World wechat1111',
-    userInfo: {},
-    imgUrls: [
-      'http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTItK0O4XWasXQH6AKmtEkKfwUsmrsadkuIhdpicLbYnU0jNW0H4IVko7nqXuTmvDI0SOPJmLCBL9ww/0',
-      'http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTItK0O4XWasXQH6AKmtEkKfwUsmrsadkuIhdpicLbYnU0jNW0H4IVko7nqXuTmvDI0SOPJmLCBL9ww/0',
-      'http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTItK0O4XWasXQH6AKmtEkKfwUsmrsadkuIhdpicLbYnU0jNW0H4IVko7nqXuTmvDI0SOPJmLCBL9ww/0'
-    ],
-    indicatorDots: false,
-    autoplay: false,
-    interval: 5000,
-    duration: 1000
+    banner: null,
+    autoplay: true,
+    interval: 2000,
+    duration: 1000,
+    txtAds: null,
+    advertise: null
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  changeIndicatorDots: function(e) {
-    this.setData({
-      indicatorDots: !this.data.indicatorDots
-    })
-  },
-  changeAutoplay: function(e) {
-    this.setData({
-      autoplay: !this.data.autoplay
-    })
-  },
-  intervalChange: function(e) {
-    this.setData({
-      interval: e.detail.value
-    })
-  },
-  durationChange: function(e) {
-    this.setData({
-      duration: e.detail.value
-    })
-  },
-  onLoad: function () {
-    console.log('onLoad')
-    var that = this
-  	//调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
+  /*
+  * 首页banner
+  */
+  setBanner: function () {
+    let that = this;
+    util.fetch('http://api.cyb.kuaiqiangche.com/event/advertise/banner', function (data) {
       that.setData({
-        userInfo:userInfo
-      })
-      that.update()
-    })
+        banner: data.data
+      });
+    });
+  },
+  /**
+   * 首页文字广告
+   */
+  setTxtAds: function(){
+    let that = this;
+    util.fetch('http://api.cyb.kuaiqiangche.com/event/advertise/roll', function (data) {
+      that.setData({
+        txtAds: data.data[0]
+      });
+    });
+  },
+  /**
+   * 首页两块子banner
+   */
+  setSubBanner: function(){
+    let that = this;
+    util.fetch('http://api.cyb.kuaiqiangche.com/event/advertise/index', function (data) {
+      that.setData({
+        advertise: data.data
+      });
+    });
+  },
+  /**
+   * 模块入口
+   */
+  setModule: function(){
+
+  },
+  /**
+   * 入口
+   */
+  onLoad: function () {
+    var that = this;
+    that.setBanner();
+    that.setTxtAds();
+    that.setSubBanner();
+    that.setModule();
   }
-})
+});
