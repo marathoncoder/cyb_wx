@@ -1,20 +1,31 @@
+var util = require('../../utils/util');
+
 Page({
-  data:{
-    text:"Page car_source"
+  data: {
+    recommendSources: null,
+    importCar: null,
+    hotCar: null,
+    commonCar: null,
   },
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  /**
+   * 热门车型和主品牌
+   */
+  fetchData: function () {
+    let that = this;
+    util.fetch('http://api.cyb.kuaiqiangche.com/car/brand_list', function (data) {
+      let brandList = [];
+      let common = data.data.common;
+      for (let k in common) {
+        brandList.push(common[k]);
+      }
+      that.setData({
+        hotCar: data.data.hot,
+        commonCar: brandList
+      });
+    });
   },
-  onReady:function(){
-    // 页面渲染完成
-  },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+  onLoad: function (options) {
+    let that = this;
+    that.fetchData();
   }
 })
