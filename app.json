@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/car_source/car_source",
     "pages/search_car/search_car",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

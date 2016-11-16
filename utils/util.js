@@ -23,7 +23,7 @@ function fetchURL(url, callback) {
         return response.json();
       }
     }).then(function (data) {
-      console.log(data);
+      // console.log(data);
       if (typeof callback == 'function') {
         callback(data);
       }

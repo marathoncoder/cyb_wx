@@ -3,7 +3,7 @@
     <view wx:for="{{banner}}" wx:key="unique">
       <swiper-item>
         <view>
-          <image src="{{item.image}}" mode="scaleToFill center" class="banner"></image>
+          <navigator url="{{item.target}}"><image src="{{item.image}}" mode="scaleToFill center" class="banner"></image></navigator>
         </view>
       </swiper-item>
     </view>
